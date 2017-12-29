@@ -24,9 +24,11 @@ public class FileOperationImpl1 implements FileOperations {
     }
 
     public String readFromFile(String fileName) {
+
         Path p = Paths.get(".", fileName);
         Charset c = Charset.forName("UTF-8");
         List<String> content= null;
+
         try {
             content = Files.readAllLines(p,c);
         } catch (IOException e) {
@@ -49,7 +51,7 @@ public class FileOperationImpl1 implements FileOperations {
         try {
             Path p = Paths.get(".", fileName);
             if (Files.exists(p)) {
-                Files.write(p, content.getBytes(), StandardOpenOption.APPEND);
+                Files.write(p, content.getBytes(), StandardOpenOption.CREATE);
             } else {
 
                 Files.write(p, content.getBytes());
@@ -65,7 +67,7 @@ public class FileOperationImpl1 implements FileOperations {
         try {
             Path p = Paths.get(".", fileName);
             if (Files.exists(p)) {
-                Files.write(p, listOfStrings, StandardOpenOption.APPEND);
+                Files.write(p, listOfStrings, StandardOpenOption.CREATE);
             } else {
 
                 Files.write(p, listOfStrings);

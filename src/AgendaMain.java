@@ -1,7 +1,13 @@
+import fileoperation.FileOperationImpl1;
+import fileoperation.FileOperations;
+
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AgendaMain {
+
+    FileOperations fo = new FileOperationImpl1();
 
     List<Person> agenda = new ArrayList<>();
 
@@ -49,6 +55,21 @@ public class AgendaMain {
     }
 
 
+    private void salveaza(List<String> listaAgenda)
+    {
+
+        fo.writeFile("agenda.txt", listaAgenda);
+
+
+    }
+
+    private void salveazaFaraLista(String content)
+    {
+
+        fo.writeFile("altaagenda.txt", content);
+    }
+
+
     public static void main(String[] args) {
 
         AgendaMain am = new AgendaMain();
@@ -57,9 +78,19 @@ public class AgendaMain {
         am.add("ionel", "547566435765");
         am.add("alina", "68678658");
 
+        List<String> listOfStrings = new ArrayList<>();
+
+        listOfStrings.add(0, "ionel, 655656565");
+        listOfStrings.add(1, "gigel, 4454545454");
+        listOfStrings.add(2,"costel, 4274957843574395");
+        listOfStrings.add(3,"mihai, 312321312");
 
 
-        String telefon = am.find("gdfhdfgd");
+        am.salveaza(listOfStrings);
+
+        am.salveazaFaraLista("ionel, 6555343242");
+
+        String telefon = am.find("alina");
 
         System.out.println("tel:"+telefon);
 
